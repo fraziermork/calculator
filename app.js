@@ -27,7 +27,7 @@ $(document).ready(function(){
         buttonRow.appendChild(thisRowEl);
         var thisButton = document.createElement('button');
         thisButton.id = thisRow[j][1];
-        thisButton.textContent = thisRow[j][0];
+        thisButton.innerHTML = thisRow[j][0];
         thisRowEl.appendChild(thisButton);
       }
       $('.add').attr('rowspan','2');
@@ -37,10 +37,15 @@ $(document).ready(function(){
 
   function getEventTarget(e){
     console.dir(e);
+    console.log(e.target);
     return e.target;
   }
 
-  
+  var calcContainer = document.getElementById('calcContainer');
+  calcContainer.addEventListener('click', function(e){
+    getEventTarget(e);
+  })
+
 
 
 });
