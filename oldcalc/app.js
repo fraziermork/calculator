@@ -1,3 +1,5 @@
+//think about a better way to organize the data in this, maybe using forms--as it it seems unlikely to work
+
 $(document).ready(function(){
   var thisNumber = '';
   var lastNumber = '';
@@ -10,7 +12,7 @@ $(document).ready(function(){
   var secondRow = [['7', '55'], ['8', '56'], ['9', '57'], ['&times', 'multiply'], ['&divide', 'divide']];
   var thirdRow = [['4', '52'], ['5', '53'],  ['6', '54'], ['-', 'subract'],  ['&#x0221A', 'sqrt']];
   var fourthRow = [['1', '49'], ['2', '50'],  ['3', '51'], ['+', 'add'],  ['%', 'percent']];
-  var fifthRow = [['0','48'], ['.', 'decimal'], ['&plusmn', 'plusminus'], ['=', 'equals']];
+  var fifthRow = [['0','48'], ['.', '46'], ['&plusmn', 'plusminus'], ['=', 'equals']];
   var buttonList = [firstRow, secondRow, thirdRow, fourthRow, fifthRow];
   function setup(){
     //build the table for the buttons
@@ -62,8 +64,8 @@ $(document).ready(function(){
     console.log('Shift was pressed: ' + shiftFlag);
 
     console.log('keycodeId is ' + keycodeId);
+
     //if a number key was pressed of if a number button was pushed
-    //use switch? probably faster, more elegant
     switch (keycodeId){
       case 67:
         keycodeId='on';
@@ -84,12 +86,17 @@ $(document).ready(function(){
         }
         break;
       case 191:
-          keycodeId = 'divide';
-          break;
+        keycodeId = 'divide';
+        break;
+      case 190:
+        keycodeId = 46;
+      case 13:
+        keycodeId = 'equals';
+        break
     }
 
-
-    if (Number(keycodeId) && Number(keycodeId) < 58 && Number(keycodeId) > 48){
+    //add functionality to calc
+    if (Number(keycodeId) && Number(keycodeId) < 58 && Number(keycodeId) > 47 || Number(keycodeId) === 46){
       thisNumber += String.fromCharCode(keycodeId);
     }
     //on clear
@@ -99,11 +106,24 @@ $(document).ready(function(){
     }
     //on plus this doesn't work right now
     if (keycodeId === 'plus'){
+      operation = 'plus';
+      var tresult = equals();
       lastNumber = thisNumber;
+      thisNumber = tresult;
     }
 
     //update display at finish
     calcDisplay.textContent = thisNumber;
+  }
+
+  function equals(){
+    var result;
+    if (operation === 'plus'){
+      result = (+thisNumber + +lastNumber).toString();
+      console.log(result);
+    }
+    lastNumber ='';
+    return result;
   }
 
 });
