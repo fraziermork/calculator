@@ -7,8 +7,7 @@ $(document).ready(function(){
   //initial variable setup
   var thisNumber = '';
   var lastNumber = '';
-  var numToDisplay = '0';
-  var idObjPairs = {};
+  var idObjPairs = {}; //this is what we will call to find the objects by name later on
   var operator = addTwo;
   var operatorFlag = false;
   var equalsFlag = false;
@@ -153,19 +152,23 @@ $(document).ready(function(){
     operator = squareRoot;
     equals();
   }
-  //not working
   idObjPairs['percent'].doButtonAction = function(){
-    equals();
     equalsFlag = true;
-    if(+thisNumber < 1){
+    if (operator === divideTwo){
+      equals();
       thisNumber = (+thisNumber*100).toString();
+      updateDisplay();
+    } else if (operator === multiplyTwo){
+      equals();
+      thisNumber = (+thisNumber/100).toString();
+      updateDisplay();
     } else {
-      thisNumber
+      thisNumber =  (+lastNumber * +thisNumber/100).toString();
+      equals();
+      updateDisplay();
     }
-    equals();
-    updateDisplay();
   }
-  
+
   idObjPairs['equals'].doButtonAction = function(){
     equals();
     equalsFlag = true;
@@ -179,44 +182,6 @@ $(document).ready(function(){
     operator = addTwo;
     updateDisplay(' = ' + thisNumber);
   }
-
-  // idObjPairs['equals'].doButtonAction = function(){
-  //   numToDisplay = equals();
-  // }
-  // function equals () {
-  //   tNumber = operator(lastNumber, thisNumber);
-  //   console.log('equals function sets lastNumber to '+ tNumber);
-  //   lastNumber = tNumber;
-  //   thisNumber = '';
-  //   operator = '';
-  //   return lastNumber;
-  // }
-
-
-  // idObjPairs['subtract'].doButtonAction = function(){
-  //   console.log('fucksubtract');
-  //   lastNumber = subtractTwo(lastNumber, thisNumber);
-  //   thisNumber = '';
-  //   numToDisplay = lastNumber;
-  //   updateDisplay();
-  // }
-  // idObjPairs['multiply'].doButtonAction = function(){
-  //   console.log('fuckmultiply');
-  //   lastNumber = multiplyTwo(lastNumber, thisNumber);
-  //   thisNumber = '';
-  //   numToDisplay = lastNumber;
-  //   updateDisplay();
-  // }
-  // idObjPairs['divide'].doButtonAction = function(){
-  //   console.log('fuckdivide');
-  //   lastNumber = divideTwo(lastNumber, thisNumber);
-  //   thisNumber = '';
-  //   numToDisplay = lastNumber;
-  //   updateDisplay();
-  // }
-  // idObjPairs['on'].doButtonAction = function(){
-  //   updateDisplay();
-  // }
 
 
   //operator functions
@@ -262,6 +227,6 @@ $(document).ready(function(){
 //build tickerTape
 //build overflow
 //build memory, -1, other operators,
-
+//make it possible to type with keyboard
 
 //build app more ways -- strings, arrays
