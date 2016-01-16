@@ -3,12 +3,19 @@ $(document).ready(function(){
   var calcContainerEl = document.getElementById('calcContainer');
   var calcDisplayEl = document.getElementById('calcDisplay');
   var buttonContainerEl = document.getElementById('buttonContainer');
+  var tickerTape = document.getElementById('tickerTape');
   //initial variable setup
   var thisNumber = '';
   var lastNumber = '';
   var numToDisplay = '0';
   var idObjPairs = {};
-  var operator;
+  var operator = addTwo;
+  var operatorFlag = false;
+  var equalsFlag = false;
+  var decimalFlag = false;
+  var memory ='';
+  var histString = '';
+
 
   //array for building the buttons
   var firstRow =[['on/c','on', '67', 'other'], ['ce', 'ce', '',], ['mrc', 'mrc','', 'other'], ['m+', 'mplus','', 'other'], ['m-', 'mminus','', 'other']];
@@ -51,13 +58,16 @@ $(document).ready(function(){
       thisButtonObj = new calcButtonConstructor(thisRowArray[j], thisRowEl);
       if (thisRowArray[j][3] === 'numberInput'){ // if it's a number function,
         thisButtonObj['doButtonAction'] = function(){
-          console.log('fuck!');
-          // if (operator){
-          //   equals();
-          // }
-          // thisNumber += this.butText;
-          // numToDisplay = (+thisNumber).toString();
-          // updateDisplay();
+          if (operatorFlag){
+            lastNumber = thisNumber;
+            thisNumber = '';
+            operatorFlag = false;
+          }
+          if (equalsFlag){
+            thisNumber = '';
+          }
+          thisNumber += (+this.butText).toString();
+          updateDisplay();
         };
       }
       idObjPairs[buttonList[i][j][1]] = thisButtonObj; //slap the button in the caller object
@@ -72,26 +82,104 @@ $(document).ready(function(){
 
   //add button methods
   idObjPairs['decimal'].doButtonAction = function(){
-    thisNumber += this.butText;
-    numToDisplay = (+thisNumber).toString() +'.';
-    updateDisplay();
+
+    if (!decimalFlag){
+      thisNumber += this.butText;
+      updateDisplay();
+      decimalFlag = true;
+    }
   }
   idObjPairs['on'].doButtonAction = function(){
     thisNumber = '';
     lastNumber = '';
-    numToDisplay = '0';
+    operatorFlag = false;
+    equalsFlag = false;
+    decimalFlag = false;
+    updateDisplay('clear');
+  }
+  idObjPairs['ce'].doButtonAction = function(){
+    thisNumber = '';
+    updateDisplay();
+  }
+  idObjPairs['mrc'].doButtonAction = function(){
+    equalsFlag = true;
+    thisNumber = memory;
+    updateDisplay();
+  }
+  idObjPairs['mplus'].doButtonAction = function(){
+    equals();
+    equalsFlag = true;
+    memory = (+memory + +thisNumber).toString();
+    console.log(memory + ' is in memory.')
+  }
+  idObjPairs['mminus'].doButtonAction = function(){
+    equals();
+    equalsFlag = true;
+    memory = (+memory - +thisNumber).toString();
+    console.log(memory + 'is in to memory.')
+  }
+  idObjPairs['plusminus'].doButtonAction = function(){
+    thisNumber = (+thisNumber * -1).toString();
     updateDisplay();
   }
 
 
-  // idObjPairs['add'].doButtonAction = function(){
-  //   console.log('fuckadd');
-  //   operator = addTwo;
-  //   lastNumber = thisNumber;
-  //   thisNumber = '';
-  //   numToDisplay = lastNumber;
-  //   updateDisplay();
-  // }
+  idObjPairs['add'].doButtonAction = function(){
+    equals();
+    operatorFlag = true;
+    equalsFlag=false;
+    operator = addTwo;
+  }
+  idObjPairs['subtract'].doButtonAction = function(){
+    equals();
+    operatorFlag = true;
+    equalsFlag=false;
+    operator = subtractTwo;
+  }
+  idObjPairs['multiply'].doButtonAction = function(){
+    equals();
+    operatorFlag = true;
+    equalsFlag=false;
+    operator = multiplyTwo;
+  }
+  idObjPairs['divide'].doButtonAction = function(){
+    equals();
+    operatorFlag = true;
+    equalsFlag=false;
+    operator = divideTwo;
+  }
+  idObjPairs['sqrt'].doButtonAction = function(){
+    equals();
+    operator = squareRoot;
+    equals();
+  }
+  //not working
+  idObjPairs['percent'].doButtonAction = function(){
+    equals();
+    equalsFlag = true;
+    if(+thisNumber < 1){
+      thisNumber = (+thisNumber*100).toString();
+    } else {
+      thisNumber
+    }
+    equals();
+    updateDisplay();
+  }
+  
+  idObjPairs['equals'].doButtonAction = function(){
+    equals();
+    equalsFlag = true;
+  }
+  function equals(){
+    thisNumber = operator(lastNumber, thisNumber);
+    if (Math.floor(+thisNumber) === +thisNumber){
+      decimalFlag = false;
+    }
+    lastNumber = '';
+    operator = addTwo;
+    updateDisplay(' = ' + thisNumber);
+  }
+
   // idObjPairs['equals'].doButtonAction = function(){
   //   numToDisplay = equals();
   // }
@@ -144,6 +232,9 @@ $(document).ready(function(){
   function divideTwo (a,b){
     return a / b;
   }
+  function squareRoot (a,b){
+    return Math.sqrt(b);
+  }
 
   //build event listeners for keyboard and mouseclicks
   calcContainer.addEventListener('click', function(e){
@@ -153,14 +244,24 @@ $(document).ready(function(){
   //   doButtonAction(e,true);
   // }
   function onButtonClick(e){
-    //console.log("the event e is " + e);
-    //console.log("the event targets id is " + e.target.id);
-    //console.dir(idObjPairs[e.target.id]);
     idObjPairs[e.target.id].doButtonAction();
-    //console.log("thisNumber is " + thisNumber);
   }
-  function updateDisplay(){
-    calcDisplayEl.textContent = numToDisplay;
+  function updateDisplay(entry){
+    calcDisplayEl.textContent = thisNumber;
+    // if (entry){
+    //   var historyEntry = document.createElement('li');
+    //   historyEntry.textContent = entry;
+    //   tickerTape.appendChild(historyEntry);
+    // }
   }
 
+
 });
+
+
+//build tickerTape
+//build overflow
+//build memory, -1, other operators,
+
+
+//build app more ways -- strings, arrays

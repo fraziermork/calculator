@@ -14,3 +14,12 @@
 #add {
   height: 80px !important;
 }
+
+.history {
+  border: 1px black solid;
+  width: 300px;
+  min-height: 30px;
+}
+ul {
+  list-style-type: none;
+}
