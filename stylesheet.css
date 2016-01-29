@@ -1,0 +1,25 @@
+.calcDisplay {
+  height: 50px;
+  width: 300px;
+  border: 1px black solid;
+}
+
+.calcButton {
+  height: 40px;
+  width: 60px;
+  font-size: 1.5em;
+  vertical-align: top;
+}
+
+#add {
+  height: 80px !important;
+}
+
+.history {
+  border: 1px black solid;
+  width: 300px;
+  min-height: 30px;
+}
+ul {
+  list-style-type: none;
+}
