@@ -1,3 +1,6 @@
+.calcContainer{
+}
+
 .calcDisplay {
   height: 50px;
   width: 300px;
@@ -22,4 +25,205 @@
 }
 ul {
   list-style-type: none;
+}
+
+/*body{
+  background-color: black;
+}*/
+
+
+
+
+.imageCalcContainer {
+  position: static;
+  background-image: url(img/Calc_body.png);
+  height: 478px;
+  width: 334px;
+}
+.imageCalcDisplayContainer{
+  top: 54px;
+  left: 54px;
+  position: relative;
+  /*height: 75px;
+  width: 220px;*/
+  /*border: 1px black solid;*/
+}
+
+.unclicked{
+  box-shadow: 3px 3px 5px DarkGoldenRod;
+}
+
+.calcShine{
+  position: absolute;
+  z-index: 1;
+}
+.digitTest{
+  position: absolute;
+  z-index: 0;
+  top: 20px;
+  border: 1px black solid;
+}
+
+
+.imageCalcButtonContainer{
+  position: absolute;
+  top: 190px;
+}
+.buttonSpriteHolder {
+  position: absolute;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  user-select: none;
+  -moz-user-select:none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+  /*background-position: 0px 0px;*/
+}
+.topButton {
+  height: 36px;
+  width: 47px;
+  background-image: url(img/top_button_sprite_sheet.png);
+  border-radius: 5px;
+}
+
+#oncButton {
+  top: 0px;
+  left: 22px;
+  background-position: 0px 0px;
+}
+
+#ceButton {
+  top: 0px;
+  left: 81px;
+  background-position: -94px 0px;
+}
+
+#mrcButton{
+  top: 0px;
+  left: 141px;
+  background-position: -188px 0px;
+}
+#mplusButton{
+  top: 0px;
+  left: 204px;
+  background-position: -282px 0px;
+}
+#mminusButton{
+  top: 0px;
+  left:265px;
+  background-position: -282px 0px;
+}
+
+.mainButton{
+  height: 43px;
+  width: 47px;
+  background-image: url(img/button_sprite_sheet.png);
+  border-radius: 5px;
+}
+
+.addButton{
+  height: 100px;
+  width: 47px;
+  background-image: url(img/button_sprite_sheet.png);
+  border-radius: 5px;
+}
+/*row 789*/
+#sevenButton{
+  top: 55px;
+  left:22px;
+  background-position: 0px 0px;
+}
+#eightButton{
+  top: 55px;
+  left:81px;
+  background-position: -94px 0px;
+}
+#nineButton{
+  top: 55px;
+  left:141px;
+  background-position: -188px 0px;
+}
+#multiplyButton{
+  top: 55px;
+  left:204px;
+  background-position: -282px 0px;
+}
+#divideButton{
+  top: 55px;
+  left:265px;
+  background-position: -376px 0px;
+}
+/*row 456*/
+#fourButton{
+  top: 113px;
+  left:22px;
+  background-position: -470px 0px;
+}
+#fiveButton{
+  top: 113px;
+  left:81px;
+  background-position: -564px 0px;
+}
+#sixButton{
+  top: 113px;
+  left:141px;
+  background-position: -658px 0px;
+}
+#subtractButton{
+  top: 113px;
+  left:204px;
+  background-position: -752px 0px;
+}
+#sqrtButton{
+  top: 113px;
+  left:265px;
+  background-position: -846px 0px;
+}
+/*row 123*/
+#oneButton{
+  top: 169px;
+  left:22px;
+  background-position: -940px 0px;
+}
+#twoButton{
+  top: 169px;
+  left:81px;
+  background-position: -1034px 0px;
+}
+#threeButton{
+  top: 169px;
+  left:141px;
+  background-position: -1128px 0px;
+}
+#addButton{
+  top: 169px;
+  left:204px;
+  background-position: -1692px 0px;
+}
+#percentButton{
+  top: 169px;
+  left:265px;
+  background-position: -1222px 0px;
+}
+/*row 0*/
+#zeroButton{
+  top: 226px;
+  left:22px;
+  background-position: -1316px 0px;
+}
+#decimalButton{
+  top: 226px;
+  left:81px;
+  background-position: -1410px 0px;
+}
+#plusminusButton{
+  top: 226px;
+  left:141px;
+  background-position: -1504px 0px;
+}
+#equalsButton{
+  top: 226px;
+  left:265px;
+  background-position: -1598px 0px;
 }

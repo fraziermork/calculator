@@ -3,7 +3,7 @@ $(document).ready(function(){
   var calcContainerEl = document.getElementById('calcContainer');
   var calcDisplayEl = document.getElementById('calcDisplay');
   var buttonContainerEl = document.getElementById('buttonContainer');
-  var tickerTape = document.getElementById('tickerTape');
+
   //initial variable setup
   var thisNumber = '';
   var lastNumber = '';
@@ -205,20 +205,60 @@ $(document).ready(function(){
   calcContainer.addEventListener('click', function(e){
     onButtonClick(e);
   })
-  // document.addEventListener('keydown', function(e){
-  //   doButtonAction(e,true);
-  // }
   function onButtonClick(e){
     idObjPairs[e.target.id].doButtonAction();
   }
   function updateDisplay(entry){
     calcDisplayEl.textContent = thisNumber;
-    // if (entry){
-    //   var historyEntry = document.createElement('li');
-    //   historyEntry.textContent = entry;
-    //   tickerTape.appendChild(historyEntry);
-    // }
+
   }
+
+
+  // var imageCalcContainer = document.getElementById('imageCalcContainer');
+  // imageCalcContainer.addEventListener('click', function(event){
+  //   console.log(event);
+  //   console.log(event.target);
+  //   console.log(event.target.id);
+  //   $('#' + event.target.id).on('mousedown', function(){
+  //
+  //   });
+  // });
+  $('.buttonSpriteHolder').on('mousedown', function(event){
+    var $eventTargetId = $('#' + event.target.id);
+    console.log($eventTargetId);
+    $eventTargetId.removeClass('unclicked');
+    $eventTargetId.css('top', '+=1');
+    $eventTargetId.css('background-position', function(){
+      console.log('mousedown background-position is');
+      console.log($eventTargetId.css('background-position'));
+      var backgndPos = $eventTargetId.css('background-position').split(' ');
+      console.log('backgndPos after split');
+      console.log(backgndPos);
+      backgndPos[0] = Number(backgndPos[0].replace('px', ''));
+      backgndPos[0] -=47;
+      backgndPos = backgndPos[0]+ 'px ' + backgndPos[1];
+      console.log('backgndPos after join');
+      console.log(backgndPos);
+      return backgndPos;
+    });
+    $('body').one('mouseup', function(){
+      $eventTargetId.addClass('unclicked');
+      $eventTargetId.css('top', '-=1');
+      $eventTargetId.css('background-position', function(){
+        console.log('mouseup background-position is');
+        console.log($eventTargetId.css('background-position'));
+        var backgndPos = $eventTargetId.css('background-position').split(' ');
+        console.log('backgndPos after split');
+        console.log(backgndPos);
+        backgndPos[0] = Number(backgndPos[0].replace('px', ''));
+        backgndPos[0] +=47;
+        backgndPos = backgndPos[0]+ 'px ' + backgndPos[1];
+        console.log('backgndPos after join');
+        console.log(backgndPos);
+        return backgndPos;
+      });
+    })
+  });
 
 
 });

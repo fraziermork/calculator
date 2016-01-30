@@ -8,6 +8,8 @@
   border: 1px black solid;
 }
 
-.button {
-  
+.imageCalcContainer {
+  /*background-image: url(https://upload.wikimedia.org/wikipedia/commons/2/24/Male_mallard_duck_2.jpg);*/
+  height: 1024px;
+  width: 768px;
 }
