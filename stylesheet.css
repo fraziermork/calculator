@@ -14,15 +14,10 @@
   vertical-align: top;
 }
 
-#add {
+/*#add {
   height: 80px !important;
-}
+}*/
 
-.history {
-  border: 1px black solid;
-  width: 300px;
-  min-height: 30px;
-}
 ul {
   list-style-type: none;
 }
@@ -41,28 +36,44 @@ ul {
   width: 334px;
 }
 .imageCalcDisplayContainer{
-  top: 54px;
-  left: 54px;
+  top: 53px;
+  left: 53px;
   position: relative;
-  /*height: 75px;
-  width: 220px;*/
-  /*border: 1px black solid;*/
+
 }
 
 .unclicked{
   box-shadow: 3px 3px 5px DarkGoldenRod;
 }
+#displayMinus{
+  display: none;
+}
+#displayMemory{
+  display: none;
+}
+#displayError{
+  display: none;
+}
 
 .calcShine{
+  border-radius: 5px;
   position: absolute;
+  top: 1px;
   z-index: 1;
 }
-.digitTest{
+.displayDigit{
   position: absolute;
+  height: 49px;
+  width: 24px;
   z-index: 0;
   top: 20px;
-  border: 1px black solid;
+  /*border: 1px black solid;*/
+  background-image: url(img/digitsspritesheet.png);
+  background-position: 500px 0px;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
+
 
 
 .imageCalcButtonContainer{
@@ -87,29 +98,29 @@ ul {
   border-radius: 5px;
 }
 
-#oncButton {
+#on {
   top: 0px;
   left: 22px;
   background-position: 0px 0px;
 }
 
-#ceButton {
+#ce {
   top: 0px;
   left: 81px;
   background-position: -94px 0px;
 }
 
-#mrcButton{
+#mrc{
   top: 0px;
   left: 141px;
   background-position: -188px 0px;
 }
-#mplusButton{
+#mplus{
   top: 0px;
   left: 204px;
   background-position: -282px 0px;
 }
-#mminusButton{
+#mminus{
   top: 0px;
   left:265px;
   background-position: -282px 0px;
@@ -129,100 +140,100 @@ ul {
   border-radius: 5px;
 }
 /*row 789*/
-#sevenButton{
+#seven{
   top: 55px;
   left:22px;
   background-position: 0px 0px;
 }
-#eightButton{
+#eight{
   top: 55px;
   left:81px;
   background-position: -94px 0px;
 }
-#nineButton{
+#nine{
   top: 55px;
   left:141px;
   background-position: -188px 0px;
 }
-#multiplyButton{
+#multiply{
   top: 55px;
   left:204px;
   background-position: -282px 0px;
 }
-#divideButton{
+#divide{
   top: 55px;
   left:265px;
   background-position: -376px 0px;
 }
 /*row 456*/
-#fourButton{
+#four{
   top: 113px;
   left:22px;
   background-position: -470px 0px;
 }
-#fiveButton{
+#five{
   top: 113px;
   left:81px;
   background-position: -564px 0px;
 }
-#sixButton{
+#six{
   top: 113px;
   left:141px;
   background-position: -658px 0px;
 }
-#subtractButton{
+#subtract{
   top: 113px;
   left:204px;
   background-position: -752px 0px;
 }
-#sqrtButton{
+#sqrt{
   top: 113px;
   left:265px;
   background-position: -846px 0px;
 }
 /*row 123*/
-#oneButton{
+#one{
   top: 169px;
   left:22px;
   background-position: -940px 0px;
 }
-#twoButton{
+#two{
   top: 169px;
   left:81px;
   background-position: -1034px 0px;
 }
-#threeButton{
+#three{
   top: 169px;
   left:141px;
   background-position: -1128px 0px;
 }
-#addButton{
+#add{
   top: 169px;
   left:204px;
   background-position: -1692px 0px;
 }
-#percentButton{
+#percent{
   top: 169px;
   left:265px;
   background-position: -1222px 0px;
 }
 /*row 0*/
-#zeroButton{
+#zero{
   top: 226px;
   left:22px;
   background-position: -1316px 0px;
 }
-#decimalButton{
+#decimal{
   top: 226px;
   left:81px;
   background-position: -1410px 0px;
 }
-#plusminusButton{
+#plusminus{
   top: 226px;
   left:141px;
   background-position: -1504px 0px;
 }
-#equalsButton{
+#equals{
   top: 226px;
   left:265px;
   background-position: -1598px 0px;

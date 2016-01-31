@@ -12,8 +12,9 @@ $(document).ready(function(){
   var operatorFlag = false;
   var equalsFlag = false;
   var decimalFlag = false;
-  var memory ='';
+  var memory = '';
   var histString = '';
+
 
 
   //array for building the buttons
@@ -70,7 +71,7 @@ $(document).ready(function(){
         };
       }
       idObjPairs[buttonList[i][j][1]] = thisButtonObj; //slap the button in the caller object
-      thisButtonObj.renderButton(); // actually draw the button
+      // thisButtonObj.renderButton(); // actually draw the button
     }
   }
   $('.add').attr('rowspan', '2');
@@ -84,8 +85,9 @@ $(document).ready(function(){
 
     if (!decimalFlag){
       thisNumber += this.butText;
-      updateDisplay();
       decimalFlag = true;
+      updateDisplay();
+      console.log('insideidObjPairs, decimalFlag is ' + decimalFlag);
     }
   }
   idObjPairs['on'].doButtonAction = function(){
@@ -148,6 +150,7 @@ $(document).ready(function(){
     operator = divideTwo;
   }
   idObjPairs['sqrt'].doButtonAction = function(){
+    equalsFlag=true;
     equals();
     operator = squareRoot;
     equals();
@@ -186,81 +189,116 @@ $(document).ready(function(){
 
   //operator functions
   function addTwo (a, b){
-    return +a + +b;
+    return (+a + +b).toString();
   }
   function subtractTwo (a,b){
-    return a - b;
+    return (a - b).toString();
   }
   function multiplyTwo (a,b){
-    return a * b;
+    return (a * b).toString();
   }
   function divideTwo (a,b){
-    return a / b;
+    return (a / b).toString();
   }
   function squareRoot (a,b){
-    return Math.sqrt(b);
+    return (Math.sqrt(b)).toString();
   }
 
-  //build event listeners for keyboard and mouseclicks
-  calcContainer.addEventListener('click', function(e){
-    onButtonClick(e);
-  })
-  function onButtonClick(e){
-    idObjPairs[e.target.id].doButtonAction();
-  }
+
+
+
+
+  //display functions
   function updateDisplay(entry){
     calcDisplayEl.textContent = thisNumber;
+    drawToDisplay();
+  }
+  function clearDisplay(){
+    $('.displayDigit').css('background-position', '500px 0px');
+  }
 
+  function drawToDisplay(){
+    console.log('_______________________________');
+    console.log('thisNumber is ' + thisNumber);
+    console.log('thisNumber is of type ' + typeof(thisNumber));
+    if (! +thisNumber){
+      clearDisplay();
+    }
+    var numArray = thisNumber.split('');
+    var negFlag = false;
+    if (+thisNumber < 0){
+      console.log('was a negative number');
+      negFlag = true;
+      numArray.shift();
+    }
+    var length = numArray.length;
+    var decimalPosition = 0;
+    if (decimalFlag){
+      length -= 1;
+      decimalPosition = numArray.join('').indexOf('.');
+      numArray.splice(decimalPosition, 1);
+    }
+    for (var i = 0; i < length; i++){
+      $('#digit' + i).css('background-position', function(){
+        var position = 0;
+        var thisNo = Number(numArray[length - 1 - i]);
+        if (thisNo){
+          position = (thisNo - 1) * -50;
+        } else if (thisNo === 0){
+          position = -450;
+        } else {
+          console.log('Error in recognizing number in drawToDisplay');
+        }
+        if(decimalPosition !== -1){
+          if (decimalPosition === length - i){
+            position -= 25;
+          }
+        }
+        return position + 'px 0px';
+      });
+    }
   }
 
 
-  // var imageCalcContainer = document.getElementById('imageCalcContainer');
-  // imageCalcContainer.addEventListener('click', function(event){
-  //   console.log(event);
-  //   console.log(event.target);
-  //   console.log(event.target.id);
-  //   $('#' + event.target.id).on('mousedown', function(){
-  //
-  //   });
-  // });
+  function drawInitialDisplay(){
+    $imageCalcDisplayContainer = $('#imageCalcDisplayContainer');
+    for (var i = 0; i < 9; i++){
+      $imageCalcDisplayContainer.append('<div class="displayDigit" id="digit' + i +'"></div>');
+      $('#digit' + i).css('left', function(){
+        return (202 - 25*i).toString() + 'px';
+      });
+    }
+  }
+  drawInitialDisplay();
+
+
+  //set up event listeners
   $('.buttonSpriteHolder').on('mousedown', function(event){
+    idObjPairs[event.target.id].doButtonAction();
     var $eventTargetId = $('#' + event.target.id);
-    console.log($eventTargetId);
     $eventTargetId.removeClass('unclicked');
     $eventTargetId.css('top', '+=1');
     $eventTargetId.css('background-position', function(){
-      console.log('mousedown background-position is');
-      console.log($eventTargetId.css('background-position'));
       var backgndPos = $eventTargetId.css('background-position').split(' ');
-      console.log('backgndPos after split');
-      console.log(backgndPos);
       backgndPos[0] = Number(backgndPos[0].replace('px', ''));
       backgndPos[0] -=47;
       backgndPos = backgndPos[0]+ 'px ' + backgndPos[1];
-      console.log('backgndPos after join');
-      console.log(backgndPos);
       return backgndPos;
     });
-    $('body').one('mouseup', function(){
+    $(window).one('mouseup', function(){
       $eventTargetId.addClass('unclicked');
       $eventTargetId.css('top', '-=1');
       $eventTargetId.css('background-position', function(){
-        console.log('mouseup background-position is');
-        console.log($eventTargetId.css('background-position'));
         var backgndPos = $eventTargetId.css('background-position').split(' ');
-        console.log('backgndPos after split');
-        console.log(backgndPos);
         backgndPos[0] = Number(backgndPos[0].replace('px', ''));
         backgndPos[0] +=47;
         backgndPos = backgndPos[0]+ 'px ' + backgndPos[1];
-        console.log('backgndPos after join');
-        console.log(backgndPos);
         return backgndPos;
       });
     })
   });
 
-
+  updateDisplay();
 });
 
 
