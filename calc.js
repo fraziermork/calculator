@@ -5,8 +5,8 @@ $(document).ready(function(){
   var buttonContainerEl = document.getElementById('buttonContainer');
 
   //initial variable setup
-  var thisNumber = '';
-  var lastNumber = '';
+  var thisNumber = '0';
+  var lastNumber = '0';
   var idObjPairs = {}; //this is what we will call to find the objects by name later on
   var operator = addTwo;
   var operatorFlag = false;
@@ -14,6 +14,7 @@ $(document).ready(function(){
   var decimalFlag = false;
   var memory = '';
   var histString = '';
+  var thisNumberLength = 0;
 
 
 
@@ -57,18 +58,7 @@ $(document).ready(function(){
     for (var j = 0; j < thisRowArray.length; j++ ){
       thisButtonObj = new calcButtonConstructor(thisRowArray[j], thisRowEl);
       if (thisRowArray[j][3] === 'numberInput'){ // if it's a number function,
-        thisButtonObj['doButtonAction'] = function(){
-          if (operatorFlag){
-            lastNumber = thisNumber;
-            thisNumber = '';
-            operatorFlag = false;
-          }
-          if (equalsFlag){
-            thisNumber = '';
-          }
-          thisNumber += (+this.butText).toString();
-          updateDisplay();
-        };
+        thisButtonObj['doButtonAction'] = numButton;
       }
       idObjPairs[buttonList[i][j][1]] = thisButtonObj; //slap the button in the caller object
       // thisButtonObj.renderButton(); // actually draw the button
@@ -81,6 +71,25 @@ $(document).ready(function(){
 
 
   //add button methods
+  function numButton(){
+    if (operatorFlag){
+      lastNumber = thisNumber;
+      thisNumber = '';
+      operatorFlag = false;
+      thisNumberLength = 0;
+    }
+    if (equalsFlag){
+      thisNumber = '0';
+      thisNumberLength = 0;
+    }
+    if (thisNumberLength < 10){
+      thisNumberLength++;
+      thisNumber += (+this.butText).toString();
+      // thisNumber =  (+(thisNumber + (+this.butText).toString())).toString();
+      updateDisplay();
+    }
+  };
+
   idObjPairs['decimal'].doButtonAction = function(){
 
     if (!decimalFlag){
@@ -91,15 +100,15 @@ $(document).ready(function(){
     }
   }
   idObjPairs['on'].doButtonAction = function(){
-    thisNumber = '';
-    lastNumber = '';
+    thisNumber = '0';
+    lastNumber = '0';
     operatorFlag = false;
     equalsFlag = false;
     decimalFlag = false;
     updateDisplay('clear');
   }
   idObjPairs['ce'].doButtonAction = function(){
-    thisNumber = '';
+    thisNumber = '0';
     updateDisplay();
   }
   idObjPairs['mrc'].doButtonAction = function(){
@@ -181,7 +190,7 @@ $(document).ready(function(){
     if (Math.floor(+thisNumber) === +thisNumber){
       decimalFlag = false;
     }
-    lastNumber = '';
+    lastNumber = '0';
     operator = addTwo;
     updateDisplay(' = ' + thisNumber);
   }
@@ -214,7 +223,7 @@ $(document).ready(function(){
     drawToDisplay();
   }
   function clearDisplay(){
-    $('.displayDigit').css('background-position', '500px 0px');
+    $('.displayDigit').css('background-position', '50px 0px');
   }
 
   function drawToDisplay(){
@@ -243,19 +252,22 @@ $(document).ready(function(){
         var position = 0;
         var thisNo = Number(numArray[length - 1 - i]);
         if (thisNo){
-          position = (thisNo - 1) * -50;
+          position = (thisNo - 1) * -54;
         } else if (thisNo === 0){
-          position = -450;
+          position = -486;
         } else {
           console.log('Error in recognizing number in drawToDisplay');
         }
         if(decimalPosition !== -1){
           if (decimalPosition === length - i){
-            position -= 25;
+            position -= 27;
           }
         }
         return position + 'px 0px';
       });
+    }
+    for (var i = length; i < 10; i++){
+      $('#digit' + i).css('background-position', '50px 0px');
     }
   }
 
@@ -301,10 +313,26 @@ $(document).ready(function(){
   updateDisplay();
 });
 
+//if first number entered = 0, can display 00005 which is dumb
+//need to fix leading zeros
+//weird error when trying to multiply numbers, 560000.233 * 3, 3 doesn't show up, doesn't happen without the decimal
+//update conditions at beginning of decimal
+//fix clear display conditions -- not sure what this means anymore, might have been solved
+//prevent repeating operator flags when you press 1 +-x/ 2
+//fix order of operations with negative and decimals, that really got fucked up
+//add maximum number of digits
+
+
+
+
+
+
+
+
+
 
 //build tickerTape
-//build overflow
-//build memory, -1, other operators,
+//build error, memory, minus flags
 //make it possible to type with keyboard
 
 //build app more ways -- strings, arrays

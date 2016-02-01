@@ -64,11 +64,11 @@ ul {
 .displayDigit{
   position: absolute;
   height: 49px;
-  width: 24px;
+  width: 25px;
   z-index: 0;
   top: 20px;
   /*border: 1px black solid;*/
-  background-image: url(img/digitsspritesheet.png);
+  background-image: url(img/digitsspritesheetfixed.png);
   background-position: 500px 0px;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -92,7 +92,7 @@ ul {
   /*background-position: 0px 0px;*/
 }
 .topButton {
-  height: 36px;
+  height: 35px;
   width: 47px;
   background-image: url(img/top_button_sprite_sheet.png);
   border-radius: 5px;
@@ -112,8 +112,8 @@ ul {
 
 #mrc{
   top: 0px;
-  left: 141px;
-  background-position: -188px 0px;
+  left: 142px;
+  background-position: -189px 0px;
 }
 #mplus{
   top: 0px;
@@ -127,7 +127,7 @@ ul {
 }
 
 .mainButton{
-  height: 43px;
+  height: 42px;
   width: 47px;
   background-image: url(img/button_sprite_sheet.png);
   border-radius: 5px;
