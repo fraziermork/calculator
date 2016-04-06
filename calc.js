@@ -13,10 +13,11 @@ $(document).ready(function(){
   var operatorFlag = false;
   var equalsFlag = false;
   var decimalFlag = false;
-  var memory = '';
-  var histString = '';
+  var memory = '0';
   var thisNumberLength = 0;
-  
+  var $displayMemory = $('#displayMemory');
+  var $displayMinus = $('#displayMinus')
+  var $displayError = $('#displayError')
   
   // button information
   var firstRow    = [
@@ -155,12 +156,14 @@ idObjPairs['mplus'].doButtonAction = function(){
   equalsFlag = true;
   memory = (+memory + +thisNumber).toString();
   console.log(memory + ' is in memory.')
+  updateDisplay();
 }
 idObjPairs['mminus'].doButtonAction = function(){
   equals();
   equalsFlag = true;
   memory = (+memory - +thisNumber).toString();
   console.log(memory + 'is in to memory.')
+  updateDisplay();
 }
 idObjPairs['plusminus'].doButtonAction = function(){
   thisNumber = (+thisNumber * -1).toString();
@@ -252,7 +255,10 @@ function squareRoot (a,b){
 
 
 
-function updateDisplay(entry){ //draws the content to the display window
+function updateDisplay(){ //draws the content to the display window
+  $displayMemory.hide();
+  $displayMinus.hide();
+  $displayError.hide();
   calcDisplayEl.textContent = thisNumber;
   drawToDisplay();
 }
@@ -303,6 +309,16 @@ function drawToDisplay(){
   }
   for (var i = length; i < 10; i++){
     $('#digit' + i).css('background-position', '50px 0px');
+  }
+  //set visibility of top flags
+  if(memory !== '0'){
+    $displayMemory.show();
+  }
+  if(+thisNumber < 0){
+    $displayMinus.show();
+  }
+  if(thisNumber.length > 10){
+    $displayError.show();
   }
 }
 
@@ -368,7 +384,7 @@ updateDisplay();
 
 
 
-//build tickerTape
+
 //build error, memory, minus flags
 //make it possible to type with keyboard
 

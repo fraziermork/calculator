@@ -47,12 +47,24 @@ body{
 }
 #displayMinus{
   display: none;
+  position: absolute;
+  top:0;
+  left: 10px;
+  margin: 0;
 }
 #displayMemory{
   display: none;
+  position: absolute;
+  top:0;
+  right: 115px;
+  margin: 0;
 }
 #displayError{
   display: none;
+  position: absolute;
+  top:0;
+  left: 80px;
+  margin: 0;
 }
 
 .calcShine{
