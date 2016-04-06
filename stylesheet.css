@@ -1,3 +1,6 @@
+.calcContainer{
+}
+
 .calcDisplay {
   height: 50px;
   width: 300px;
@@ -11,15 +14,239 @@
   vertical-align: top;
 }
 
-#add {
+/*#add {
   height: 80px !important;
-}
+}*/
 
-.history {
-  border: 1px black solid;
-  width: 300px;
-  min-height: 30px;
-}
 ul {
   list-style-type: none;
+}
+
+body{
+  background-color: black;
+}
+
+
+
+
+.imageCalcContainer {
+  position: static;
+  background-image: url(img/Calc_body.png);
+  height: 478px;
+  width: 334px;
+}
+.imageCalcDisplayContainer{
+  top: 53px;
+  left: 53px;
+  position: relative;
+
+}
+
+.unclicked{
+  box-shadow: 3px 3px 5px DarkGoldenRod;
+}
+#displayMinus{
+  display: none;
+  position: absolute;
+  top:0;
+  left: 10px;
+  margin: 0;
+}
+#displayMemory{
+  display: none;
+  position: absolute;
+  top:0;
+  right: 115px;
+  margin: 0;
+}
+#displayError{
+  display: none;
+  position: absolute;
+  top:0;
+  left: 80px;
+  margin: 0;
+}
+
+.calcShine{
+  border-radius: 5px;
+  position: absolute;
+  top: 1px;
+  z-index: 1;
+}
+.displayDigit{
+  position: absolute;
+  height: 49px;
+  width: 25px;
+  z-index: 0;
+  top: 20px;
+  /*border: 1px black solid;*/
+  background-image: url(img/digitsspritesheetfixed.png);
+  background-position: 500px 0px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+
+
+.imageCalcButtonContainer{
+  position: absolute;
+  top: 190px;
+}
+.buttonSpriteHolder {
+  position: absolute;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  user-select: none;
+  -moz-user-select:none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+  /*background-position: 0px 0px;*/
+}
+.topButton {
+  height: 35px;
+  width: 47px;
+  background-image: url(img/top_button_sprite_sheet.png);
+  border-radius: 5px;
+}
+
+#on {
+  top: 0px;
+  left: 22px;
+  background-position: 0px 0px;
+}
+
+#ce {
+  top: 0px;
+  left: 81px;
+  background-position: -94px 0px;
+}
+
+#mrc{
+  top: 0px;
+  left: 142px;
+  background-position: -189px 0px;
+}
+#mplus{
+  top: 0px;
+  left: 204px;
+  background-position: -282px 0px;
+}
+#mminus{
+  top: 0px;
+  left:265px;
+  background-position: -282px 0px;
+}
+
+.mainButton{
+  height: 42px;
+  width: 47px;
+  background-image: url(img/button_sprite_sheet.png);
+  border-radius: 5px;
+}
+
+.addButton{
+  height: 100px;
+  width: 47px;
+  background-image: url(img/button_sprite_sheet.png);
+  border-radius: 5px;
+}
+/*row 789*/
+#seven{
+  top: 55px;
+  left:22px;
+  background-position: 0px 0px;
+}
+#eight{
+  top: 55px;
+  left:81px;
+  background-position: -94px 0px;
+}
+#nine{
+  top: 55px;
+  left:141px;
+  background-position: -188px 0px;
+}
+#multiply{
+  top: 55px;
+  left:204px;
+  background-position: -282px 0px;
+}
+#divide{
+  top: 55px;
+  left:265px;
+  background-position: -376px 0px;
+}
+/*row 456*/
+#four{
+  top: 113px;
+  left:22px;
+  background-position: -470px 0px;
+}
+#five{
+  top: 113px;
+  left:81px;
+  background-position: -564px 0px;
+}
+#six{
+  top: 113px;
+  left:141px;
+  background-position: -658px 0px;
+}
+#subtract{
+  top: 113px;
+  left:204px;
+  background-position: -752px 0px;
+}
+#sqrt{
+  top: 113px;
+  left:265px;
+  background-position: -846px 0px;
+}
+/*row 123*/
+#one{
+  top: 169px;
+  left:22px;
+  background-position: -940px 0px;
+}
+#two{
+  top: 169px;
+  left:81px;
+  background-position: -1034px 0px;
+}
+#three{
+  top: 169px;
+  left:141px;
+  background-position: -1128px 0px;
+}
+#add{
+  top: 169px;
+  left:204px;
+  background-position: -1692px 0px;
+}
+#percent{
+  top: 169px;
+  left:265px;
+  background-position: -1222px 0px;
+}
+/*row 0*/
+#zero{
+  top: 226px;
+  left:22px;
+  background-position: -1316px 0px;
+}
+#decimal{
+  top: 226px;
+  left:81px;
+  background-position: -1410px 0px;
+}
+#plusminus{
+  top: 226px;
+  left:141px;
+  background-position: -1504px 0px;
+}
+#equals{
+  top: 226px;
+  left:265px;
+  background-position: -1598px 0px;
 }

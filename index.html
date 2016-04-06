@@ -4,12 +4,54 @@
     <meta charset="utf-8">
     <title>Calculator</title>
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="calc.js">
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script defer type="text/javascript" src="calc.js">
 
     </script>
   </head>
   <body>
+    <div class="imageCalcContainer" id="imageCalcContainer">
+      <div class="imageCalcDisplayContainer" id="imageCalcDisplayContainer">
+        <p class="calcText" id="displayMinus">-MINUS</p>
+        <p class="calcText" id="displayMemory">MEMORY</p>
+        <p class="calcText" id="displayError">ERROR</p>
+        <img src="img/calcshine1.png" id="calcShine" class="calcShine"/>
+      </div>
+
+      <div class="imageCalcButtonContainer" id="imageCalcButtonContainer">
+
+        <div class="buttonSpriteHolder topButton unclicked" id="on"></div>
+        <div class="buttonSpriteHolder topButton unclicked" id="ce"></div>
+        <div class="buttonSpriteHolder topButton unclicked" id="mrc"></div>
+        <div class="buttonSpriteHolder topButton unclicked" id="mplus"></div>
+        <div class="buttonSpriteHolder topButton unclicked" id="mminus"></div>
+
+        <div class="buttonSpriteHolder mainButton unclicked" id="seven"></div>
+        <div class="buttonSpriteHolder mainButton unclicked" id="eight"></div>
+        <div class="buttonSpriteHolder mainButton unclicked" id="nine"></div>
+        <div class="buttonSpriteHolder mainButton unclicked" id="multiply"></div>
+        <div class="buttonSpriteHolder mainButton unclicked" id="divide"></div>
+
+        <div class="buttonSpriteHolder mainButton unclicked" id="four"></div>
+        <div class="buttonSpriteHolder mainButton unclicked" id="five"></div>
+        <div class="buttonSpriteHolder mainButton unclicked" id="six"></div>
+        <div class="buttonSpriteHolder mainButton unclicked" id="subtract"></div>
+        <div class="buttonSpriteHolder mainButton unclicked" id="sqrt"></div>
+
+        <div class="buttonSpriteHolder mainButton unclicked" id="one"></div>
+        <div class="buttonSpriteHolder mainButton unclicked" id="two"></div>
+        <div class="buttonSpriteHolder mainButton unclicked" id="three"></div>
+        <div class="buttonSpriteHolder addButton unclicked" id="add"></div>
+        <div class="buttonSpriteHolder mainButton unclicked" id="percent"></div>
+
+        <div class="buttonSpriteHolder mainButton unclicked" id="zero"></div>
+        <div class="buttonSpriteHolder mainButton unclicked" id="decimal"></div>
+        <div class="buttonSpriteHolder mainButton unclicked" id="plusminus"></div>
+        <div class="buttonSpriteHolder mainButton unclicked" id="equals"></div>
+
+      </div>
+
+    </div>
     <div class="calcContainer" id="calcContainer">
       <div class="calcDisplay" id="calcDisplay"></div>
       <div class="buttonContainer" id="buttonContainer"></div>
